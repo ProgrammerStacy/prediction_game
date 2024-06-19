@@ -14,7 +14,8 @@ class window_with_prediction : public QDialog
 public:
     explicit window_with_prediction(QWidget *parent = nullptr);
     ~window_with_prediction();
-
+private slots:
+    QString predict();
 private:
     Ui::window_with_prediction *ui;
 };

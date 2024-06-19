@@ -3,6 +3,8 @@
 #include "QPixmap"
 #include <QVector>
 #include "window_with_prediction.h"
+
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -13,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent)
     QPalette palette;
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
+    ui->text_1->QWidget::adjustSize();
+    ui->text_2->QWidget::adjustSize();
     //ui->label_2->setStyleSheet("color: rgb(50, 0, 70)");
 
 }
@@ -25,31 +29,25 @@ MainWindow::~MainWindow()
 void MainWindow::on_B_ok_clicked()
 {
     if (ui->B_ok->text() == "ок"){
-        QString user_name = ui->L_name->text();
-        ui->text_1->setText("Хорошо, " + user_name);
-        ui->text_2->setText("Теперь введи свой вопрос");
+    QString user_name = ui->L_name->text();
+    ui->text_1->setText("Хорошо, " + user_name);
+    ui->text_2->setText("Теперь введи свой вопрос");
+    ui->text_2->setGeometry(240,250,20,20);
+    ui->text_1->QWidget::adjustSize();
+    ui->text_2->QWidget::adjustSize();
+    ui->B_ok->setText("задать");
     }
     else
     {
-        window_with_prediction window;
-        window.setModal(true);
-        window.exec();
+    window_with_prediction window;
+    window.setModal(true);
+    // window.show();
+    window.exec();
     }
 }
 
 
-QString MainWindow::predict()
-{
-    QString yours_answer;
-    QVector <QString> answer = {"Бесспорно",	"Мне кажется - да",	"Пока неясно, попробуй снова",	"Даже не думай",
-                             "Предрешено",	"Вероятнее всего",	"Спроси позже",	"Мой ответ - нет",
-                             "Никаких сомнений",	"Хорошие перспективы",	"Лучше не рассказывать",	"По моим данным - нет",
-                             "Определённо да",	"Знаки говорят - да",	"Сейчас нельзя предсказать",	"Перспективы не очень хорошие",
-                             "Можешь быть уверен в этом",	"Да",	"Сконцентрируйся и спроси опять",	"Весьма сомнительно"};
-    int r = rand() % 20;
-    yours_answer = answer[r];
 
-}
 
 
 

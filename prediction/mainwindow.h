@@ -19,8 +19,6 @@ public:
 
 private slots:
 
-    QString predict();
-
     void on_B_ok_clicked();
 
 private:
